@@ -1,0 +1,8 @@
+[package]
+name = "__PLUGIN_ID__"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"

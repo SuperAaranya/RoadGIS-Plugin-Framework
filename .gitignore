@@ -1,0 +1,13 @@
+# Build outputs
+target/
+bin/
+obj/
+
+# Rust
+**/Cargo.lock
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

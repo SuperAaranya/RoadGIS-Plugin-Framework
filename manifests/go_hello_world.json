@@ -1,0 +1,16 @@
+{
+  "id": "go_hello_world",
+  "name": "Go Hello World",
+  "language": "go",
+  "description": "Basic starter plugin in Go.",
+  "command": [
+    "go",
+    "run",
+    "{{POLYGLOT_DIR}}/plugins/go_hello_world/plugin.go"
+  ],
+  "hooks": [
+    "manual",
+    "export_json"
+  ],
+  "timeout": 8
+}

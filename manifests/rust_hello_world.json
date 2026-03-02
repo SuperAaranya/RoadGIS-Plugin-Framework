@@ -1,0 +1,19 @@
+{
+  "id": "rust_hello_world",
+  "name": "Rust Hello World",
+  "language": "rust",
+  "description": "Basic starter plugin in Rust.",
+  "command": [
+    "cargo",
+    "run",
+    "--quiet",
+    "--release",
+    "--manifest-path",
+    "{{POLYGLOT_DIR}}/plugins/rust_hello_world/Cargo.toml"
+  ],
+  "hooks": [
+    "manual",
+    "export_json"
+  ],
+  "timeout": 15
+}
