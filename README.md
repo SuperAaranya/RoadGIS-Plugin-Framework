@@ -77,15 +77,15 @@ Read payload from `stdin`, emit JSON to `stdout`.
 
 ```bash
 ruby tools/install_plugin.rb ^
-  --framework "C:\Users\Aaranya\Desktop\Programming\RoadGIS-Plugin-Framework" ^
-  --roadgis "C:\Users\Aaranya\Desktop\Programming\Extra\App\App Making\RoadGISPro_fresh" ^
+  --framework "[Content]\RoadGIS-Plugin-Framework" ^
+  --roadgis "[Content]\RoadGISPro" ^
   --id go_speed_audit
 ```
 
 PowerShell alternative (same args on one line):
 
 ```powershell
-ruby tools/install_plugin.rb --framework "C:\Users\Aaranya\Desktop\Programming\RoadGIS-Plugin-Framework" --roadgis "C:\Users\Aaranya\Desktop\Programming\Extra\App\App Making\RoadGISPro_fresh" --id go_speed_audit
+ruby tools/install_plugin.rb --framework "[Content]\RoadGIS-Plugin-Framework" --roadgis "[Content]\RoadGISPro" --id go_speed_audit
 ```
 
 Installed targets:
