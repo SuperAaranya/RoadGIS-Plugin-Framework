@@ -2,6 +2,7 @@
 target/
 bin/
 obj/
+dist/
 
 # Rust
 **/Cargo.lock

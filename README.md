@@ -22,6 +22,12 @@ This framework is built for teams who want to:
 - `tools/` (Ruby):
   - `new_plugin.rb`: scaffold a new plugin
   - `install_plugin.rb`: install plugin + manifest into RoadGIS workspace
+  - `validate_manifest.rb`: validate plugin manifest structure
+  - `doctor.rb`: check required toolchains
+- `packaging/`:
+  - Windows 11 `.exe/.msi` build scaffolding
+  - Debian `.deb` build scaffolding
+  - macOS Sonoma/Sequoia/Tahoe app/pkg scaffolding
 
 ## Plugin contract (RoadGIS-compatible)
 
@@ -68,6 +74,13 @@ This creates:
 
 - source under `plugins/<id>/...`
 - manifest under `manifests/<id>.json`
+
+### 2.5) Validate environment and manifest
+
+```bash
+ruby tools/doctor.rb
+ruby tools/validate_manifest.rb --manifest manifests/go_hello_world.json
+```
 
 ### 3) Implement your plugin logic
 
@@ -117,6 +130,32 @@ In RoadGIS:
 - Go (for Go plugins)
 - Rust + Cargo (for Rust plugins)
 - Ruby 3+ (for scaffolding/install tools)
+
+## Cross-OS installer build workflows
+
+See:
+
+- `packaging/README.md`
+
+Quick examples:
+
+Windows 11:
+
+```powershell
+pwsh .\packaging\windows\build_windows.ps1 -ProjectRoot "C:\path\to\RoadGISPro_fresh"
+```
+
+Debian:
+
+```bash
+bash ./packaging/linux/build_debian.sh /path/to/RoadGISPro_fresh
+```
+
+macOS Sonoma/Sequoia/Tahoe:
+
+```bash
+bash ./packaging/macos/build_macos.sh /path/to/RoadGISPro_fresh
+```
 
 ## Notes
 
