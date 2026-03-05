@@ -56,6 +56,23 @@ git clone https://github.com/<your-user>/RoadGIS-Plugin-Framework.git
 cd RoadGIS-Plugin-Framework
 ```
 
+### 1.5) Non-developer setup path
+
+If users are not developers, they can use the installer launcher:
+
+- Windows: run `installer/Run-Setup.bat`
+- Linux/macOS: run `installer/run-setup.sh`
+
+The launcher opens a GUI with OS/package selection:
+
+- Windows 11: `.exe` / `.msi`
+- Debian: `.deb`
+- macOS Sonoma / Sequoia / Tahoe: `.pkg`
+
+Place built artifacts in `installer/artifacts/...` paths described in:
+
+- `installer/artifacts/README.md`
+
 ### 2) Create a new plugin (Ruby tool)
 
 Go plugin:
