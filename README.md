@@ -56,20 +56,15 @@ git clone https://github.com/<your-user>/RoadGIS-Plugin-Framework.git
 cd RoadGIS-Plugin-Framework
 ```
 
-### 1.5) Non-developer setup path
+### 1.5) Non-developer install path
 
-If users are not developers, they can use the installer launcher:
+For end users, distribute prebuilt installers directly from this repo:
 
-- Windows: run `installer/Run-Setup.bat`
-- Linux/macOS: run `installer/run-setup.sh`
-
-The launcher opens a GUI with OS/package selection:
-
-- Windows 11: `.exe` / `.msi` (active now)
+- Windows 11: `RoadGISProSetup.exe` or `RoadGISProSetup.msi` (active now)
 - Debian: coming soon
 - macOS Sonoma / Sequoia / Tahoe: coming soon
 
-Place built artifacts in `installer/artifacts/...` paths described in:
+Put installer binaries under the documented locations in:
 
 - `installer/artifacts/README.md`
 
