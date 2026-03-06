@@ -16,14 +16,6 @@ def artifact_for_choice(choice):
         return os.path.join(ARTIFACTS_DIR, "windows", "RoadGISProSetup.exe"), "exe"
     if "windows 11 (.msi)" in c:
         return os.path.join(ARTIFACTS_DIR, "windows", "RoadGISProSetup.msi"), "msi"
-    if "debian (.deb)" in c:
-        return os.path.join(ARTIFACTS_DIR, "linux", "roadgispro_1.0.0_amd64.deb"), "deb"
-    if "macos sonoma" in c:
-        return os.path.join(ARTIFACTS_DIR, "macos", "sonoma", "RoadGISPro.pkg"), "pkg"
-    if "macos sequoia" in c:
-        return os.path.join(ARTIFACTS_DIR, "macos", "sequoia", "RoadGISPro.pkg"), "pkg"
-    if "macos tahoe" in c:
-        return os.path.join(ARTIFACTS_DIR, "macos", "tahoe", "RoadGISPro.pkg"), "pkg"
     return None, None
 
 
@@ -71,52 +63,71 @@ def main():
 
     tk.Label(
         root,
-        text="Select your target OS package and click Run Installer:",
+        text="Windows setup wizard (EXE/MSI only for now):",
         bg="#111520",
         fg="#dde4f8",
         font=("Consolas", 10),
     ).pack(fill="x", padx=14, pady=6)
 
     choice = tk.StringVar(value="Windows 11 (.exe)")
-    options = [
-        "Windows 11 (.exe)",
-        "Windows 11 (.msi)",
-        "Debian (.deb)",
-        "macOS Sonoma (.pkg)",
-        "macOS Sequoia (.pkg)",
-        "macOS Tahoe (.pkg)",
-    ]
+    options = ["Windows 11 (.exe)", "Windows 11 (.msi)"]
     cb = ttk.Combobox(root, textvariable=choice, values=options, state="readonly", font=("Consolas", 10))
     cb.pack(fill="x", padx=14, pady=(0, 10))
+
+    tk.Label(
+        root,
+        text="Linux/macOS installers: Coming Soon",
+        bg="#111520",
+        fg="#ffcc66",
+        font=("Consolas", 10, "bold"),
+    ).pack(fill="x", padx=14, pady=(0, 6))
 
     info = tk.Text(root, bg="#0f1628", fg="#dde4f8", relief="flat", bd=0, font=("Consolas", 9), wrap="word")
     info.pack(fill="both", expand=True, padx=14, pady=8)
     info.insert(
         "1.0",
-        "Non-dev install flow:\n"
+        "Non-dev install flow (Windows):\n"
         "1) Download this framework folder/repo.\n"
-        "2) Open Run-Setup (bat/sh) or run UniversalSetup.py.\n"
-        "3) Choose your OS package.\n"
-        "4) Click Run Installer.\n\n"
-        "Expected installer artifacts:\n"
+        "2) Open Run-Setup.bat.\n"
+        "3) Select EXE or MSI package.\n"
+        "4) Accept setup terms.\n"
+        "5) Click Start Setup, then installer runs.\n\n"
+        "Expected Windows artifacts:\n"
         "- installer/artifacts/windows/RoadGISProSetup.exe\n"
         "- installer/artifacts/windows/RoadGISProSetup.msi\n"
-        "- installer/artifacts/linux/roadgispro_1.0.0_amd64.deb\n"
-        "- installer/artifacts/macos/<sonoma|sequoia|tahoe>/RoadGISPro.pkg\n",
+        "\nLinux/macOS package launchers are intentionally disabled for now.",
     )
     info.config(state="disabled")
 
     btn_row = tk.Frame(root, bg="#111520")
     btn_row.pack(fill="x", padx=14, pady=(4, 12))
 
+    accepted = tk.BooleanVar(value=False)
+    tk.Checkbutton(
+        btn_row,
+        text="I accept setup terms and want to start installer",
+        variable=accepted,
+        bg="#111520",
+        fg="#dce7ff",
+        activebackground="#111520",
+        activeforeground="#dce7ff",
+        selectcolor="#1a2640",
+        font=("Consolas", 9),
+        relief="flat",
+        bd=0,
+    ).pack(side="left", padx=(0, 10))
+
     def on_run():
+        if not accepted.get():
+            messagebox.showwarning("Setup", "Please accept setup terms before continuing.")
+            return
         p, kind = artifact_for_choice(choice.get())
         if not p:
             messagebox.showerror("Invalid Choice", "Unknown OS/package option selected.")
             return
         run_installer(p, kind)
 
-    tk.Button(btn_row, text="Run Installer", command=on_run, bg="#4a7ef5", fg="white", relief="flat", bd=0,
+    tk.Button(btn_row, text="Start Setup", command=on_run, bg="#4a7ef5", fg="white", relief="flat", bd=0,
               font=("Consolas", 10, "bold"), padx=12, pady=7).pack(side="left")
     tk.Button(btn_row, text="Close", command=root.destroy, bg="#3e4f74", fg="white", relief="flat", bd=0,
               font=("Consolas", 10, "bold"), padx=12, pady=7).pack(side="left", padx=8)

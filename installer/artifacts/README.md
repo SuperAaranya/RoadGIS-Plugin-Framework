@@ -4,10 +4,11 @@ Place final end-user installer binaries here so non-developers can just run setu
 
 - `windows/RoadGISProSetup.exe`
 - `windows/RoadGISProSetup.msi`
-- `linux/roadgispro_1.0.0_amd64.deb`
-- `macos/sonoma/RoadGISPro.pkg`
-- `macos/sequoia/RoadGISPro.pkg`
-- `macos/tahoe/RoadGISPro.pkg`
+
+Current status:
+
+- Windows installers are active now.
+- Linux/macOS package distribution is coming soon.
 
 Then users can launch:
 

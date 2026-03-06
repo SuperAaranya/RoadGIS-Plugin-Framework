@@ -65,9 +65,9 @@ If users are not developers, they can use the installer launcher:
 
 The launcher opens a GUI with OS/package selection:
 
-- Windows 11: `.exe` / `.msi`
-- Debian: `.deb`
-- macOS Sonoma / Sequoia / Tahoe: `.pkg`
+- Windows 11: `.exe` / `.msi` (active now)
+- Debian: coming soon
+- macOS Sonoma / Sequoia / Tahoe: coming soon
 
 Place built artifacts in `installer/artifacts/...` paths described in:
 
