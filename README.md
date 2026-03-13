@@ -26,8 +26,7 @@ This framework is built for teams who want to:
   - `doctor.rb`: check required toolchains
 - `packaging/`:
   - Windows 11 `.exe/.msi` build scaffolding
-  - Debian `.deb` build scaffolding
-  - macOS Sonoma/Sequoia/Tahoe app/pkg scaffolding
+  - Debian + macOS: coming soon
 
 ## Plugin contract (RoadGIS-compatible)
 
@@ -157,17 +156,9 @@ Windows 11:
 pwsh .\packaging\windows\build_windows.ps1 -ProjectRoot "C:\path\to\RoadGISPro_fresh"
 ```
 
-Debian:
+Debian + macOS:
 
-```bash
-bash ./packaging/linux/build_debian.sh /path/to/RoadGISPro_fresh
-```
-
-macOS Sonoma/Sequoia/Tahoe:
-
-```bash
-bash ./packaging/macos/build_macos.sh /path/to/RoadGISPro_fresh
-```
+Coming soon.
 
 ## Notes
 

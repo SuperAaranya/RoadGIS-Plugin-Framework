@@ -9,9 +9,7 @@ TOOLS = {
   "node" => "JavaScript engines",
   "dotnet" => "C# engines",
   "java" => "Java engines",
-  "pyinstaller" => "Executable packaging",
-  "dpkg-deb" => "Debian package build",
-  "pkgbuild" => "macOS package build"
+  "pyinstaller" => "Executable packaging (Windows)"
 }.freeze
 
 def tool_available?(name)

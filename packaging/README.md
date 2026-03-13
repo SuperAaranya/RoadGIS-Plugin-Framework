@@ -5,8 +5,8 @@ This folder provides script scaffolding for distribution workflows.
 Targets:
 
 - Windows 11: `.exe` + `.msi`
-- Debian Linux: `.deb`
-- macOS Sonoma / Sequoia / Tahoe: `.app` + `.pkg`
+- Debian Linux: coming soon
+- macOS Sonoma / Sequoia / Tahoe: coming soon
 
 These scripts focus on repeatable build pipelines and can be customized for your CI/CD.
 
@@ -26,34 +26,11 @@ Expected tooling:
 
 ## Debian Linux
 
-Run:
-
-```bash
-bash ./packaging/linux/build_debian.sh /path/to/RoadGISPro_fresh
-```
-
-Expected tooling:
-
-- python3
-- pip
-- pyinstaller
-- dpkg-deb (or fpm if you adapt script)
+Coming soon.
 
 ## macOS (Sonoma / Sequoia / Tahoe)
 
-Run:
-
-```bash
-bash ./packaging/macos/build_macos.sh /path/to/RoadGISPro_fresh
-```
-
-Expected tooling:
-
-- python3
-- pyinstaller
-- pkgbuild
-- productbuild
-- codesign / notarization tools for signed distribution
+Coming soon.
 
 ## Notes
 
