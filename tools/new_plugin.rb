@@ -3,6 +3,7 @@
 
 require "fileutils"
 require "optparse"
+require "json"
 
 options = {
   lang: nil,
@@ -25,10 +26,27 @@ root = File.expand_path("..", __dir__)
 templates_dir = File.join(root, "templates")
 plugins_dir = File.join(root, "plugins")
 manifests_dir = File.join(root, "manifests")
+config_path = File.join(root, "framework_config.json")
+
+enabled_langs = ["go", "rust"]
+if File.exist?(config_path)
+  begin
+    cfg = JSON.parse(File.read(config_path, encoding: "UTF-8"))
+    if cfg.is_a?(Hash) && cfg["enabled_languages"].is_a?(Array)
+      enabled_langs = cfg["enabled_languages"].map { |v| v.to_s.downcase }
+    end
+  rescue JSON::ParserError
+    # fall back to defaults
+  end
+end
 
 plugin_id = options[:id]
 plugin_name = options[:name]
 lang = options[:lang]
+
+unless enabled_langs.include?(lang)
+  abort("Language '#{lang}' is disabled in framework_config.json. Use tools/configure_framework.rb to enable it.")
+end
 
 if lang == "go"
   plugin_dir = File.join(plugins_dir, plugin_id)
@@ -50,6 +68,12 @@ manifest = tpl_manifest.gsub("__PLUGIN_ID__", plugin_id).gsub("__PLUGIN_NAME__",
 FileUtils.mkdir_p(manifests_dir)
 manifest_path = File.join(manifests_dir, "#{plugin_id}.json")
 File.write(manifest_path, manifest, mode: "w", encoding: "UTF-8")
+
+compat = {
+  "min_app_version" => "1.0.0",
+  "max_app_version" => "1.x"
+}
+File.write(File.join(plugin_dir, "compatibility.json"), JSON.pretty_generate(compat), mode: "w", encoding: "UTF-8")
 
 puts "Created plugin:"
 puts "  Language: #{lang}"

@@ -23,12 +23,29 @@ if missing.any?
   abort("Invalid manifest. Missing keys: #{missing.join(', ')}")
 end
 
-unless manifest["command"].is_a?(Array) && !manifest["command"].empty?
-  abort("Invalid manifest. 'command' must be a non-empty array.")
+def ensure!(cond, msg)
+  abort(msg) unless cond
 end
 
-unless manifest["hooks"].is_a?(Array) && !manifest["hooks"].empty?
-  abort("Invalid manifest. 'hooks' must be a non-empty array.")
+ensure!(manifest["id"].is_a?(String) && !manifest["id"].strip.empty?, "Invalid manifest. 'id' must be a non-empty string.")
+ensure!(manifest["name"].is_a?(String) && !manifest["name"].strip.empty?, "Invalid manifest. 'name' must be a non-empty string.")
+ensure!(manifest["language"].is_a?(String) && !manifest["language"].strip.empty?, "Invalid manifest. 'language' must be a non-empty string.")
+ensure!(manifest["command"].is_a?(Array) && !manifest["command"].empty?, "Invalid manifest. 'command' must be a non-empty array.")
+ensure!(manifest["command"].all? { |v| v.is_a?(String) && !v.strip.empty? }, "Invalid manifest. 'command' entries must be non-empty strings.")
+ensure!(manifest["hooks"].is_a?(Array) && !manifest["hooks"].empty?, "Invalid manifest. 'hooks' must be a non-empty array.")
+ensure!(manifest["hooks"].all? { |v| v.is_a?(String) && !v.strip.empty? }, "Invalid manifest. 'hooks' entries must be non-empty strings.")
+
+timeout = manifest["timeout"]
+ensure!(timeout.is_a?(Integer), "Invalid manifest. 'timeout' must be an integer.")
+ensure!(timeout >= 1 && timeout <= 60, "Invalid manifest. 'timeout' must be between 1 and 60.")
+
+if manifest.key?("compatibility")
+  compat = manifest["compatibility"]
+  ensure!(compat.is_a?(Hash), "Invalid manifest. 'compatibility' must be an object.")
+  ensure!(compat["min_app_version"].is_a?(String) && !compat["min_app_version"].strip.empty?,
+          "Invalid manifest. 'compatibility.min_app_version' must be a string.")
+  ensure!(compat["max_app_version"].is_a?(String) && !compat["max_app_version"].strip.empty?,
+          "Invalid manifest. 'compatibility.max_app_version' must be a string.")
 end
 
 puts "Manifest valid: #{path}"

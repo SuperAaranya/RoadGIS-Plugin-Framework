@@ -24,6 +24,10 @@ This framework is built for teams who want to:
   - `install_plugin.rb`: install plugin + manifest into RoadGIS workspace
   - `validate_manifest.rb`: validate plugin manifest structure
   - `doctor.rb`: check required toolchains
+- `schemas/`:
+  - `manifest.schema.json`: reference schema for plugin manifests
+- `fixtures/`:
+  - sample input/output payloads for example plugins
 - `packaging/`:
   - Windows 11 `.exe/.msi` build scaffolding
   - Debian + macOS: coming soon
@@ -91,6 +95,16 @@ This creates:
 ```bash
 ruby tools/doctor.rb
 ruby tools/validate_manifest.rb --manifest manifests/go_hello_world.json
+```
+
+### 2.6) Optional language modules (enable/disable)
+
+The framework reads `framework_config.json` to determine which languages are enabled.
+
+Example:
+
+```bash
+ruby tools/configure_framework.rb --enable go,rust
 ```
 
 ### 3) Implement your plugin logic
@@ -165,3 +179,22 @@ Coming soon.
 - Commands use `{{POLYGLOT_DIR}}` placeholder so manifests remain portable.
 - Keep plugin output a JSON object for best compatibility.
 - Hook names currently used by RoadGIS: `manual`, `export_json`.
+- Each plugin includes `compatibility.json` to record tested RoadGIS version range.
+
+## Plugin pack builder
+
+Create a single zip containing multiple plugins + manifests:
+
+```bash
+python tools/pack_plugins.py --out ./plugin-pack.zip
+```
+
+## Quick install + enable + run
+
+```bash
+ruby tools/quick_install_run.rb --framework C:/.../RoadGIS-Plugin-Framework --roadgis C:/.../RoadGISPro_fresh --id go_hello_world
+```
+
+## Fixtures
+
+Sample payloads live in `fixtures/` to make testing quick and consistent.

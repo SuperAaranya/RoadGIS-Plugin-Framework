@@ -1,0 +1,21 @@
+name: framework-ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+      - name: Validate manifests
+        run: |
+          ruby tools/validate_manifest.rb --manifest manifests/go_hello_world.json
+          ruby tools/validate_manifest.rb --manifest manifests/rust_hello_world.json
+      - name: Build plugin pack (smoke)
+        run: |
+          python tools/pack_plugins.py --out /tmp/plugin-pack.zip

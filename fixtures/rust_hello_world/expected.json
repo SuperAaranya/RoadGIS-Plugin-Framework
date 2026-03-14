@@ -1,0 +1,5 @@
+{
+  "plugin_kind": "hello_world",
+  "message": "Hello from Rust plugin",
+  "features": 0
+}
