@@ -10,7 +10,7 @@ This framework is built for teams who want to:
 - generate compatible plugin manifests,
 - install plugins into a local RoadGIS workspace.
 
-## What you get
+## What this includes
 
 - `plugins/`:
   - `go_hello_world`: working Go plugin example
@@ -34,7 +34,7 @@ This framework is built for teams who want to:
 
 ## Plugin contract (RoadGIS-compatible)
 
-Your plugin receives JSON on `stdin`, and must write JSON to `stdout`.
+Plugins receive JSON on `stdin`, and must write JSON to `stdout`.
 
 Expected manifest shape:
 
@@ -52,10 +52,10 @@ Expected manifest shape:
 
 ## Quick start
 
-### 1) Clone into your workspace
+### 1) Clone into a workspace
 
 ```bash
-git clone https://github.com/<your-user>/RoadGIS-Plugin-Framework.git
+git clone https://github.com/<owner>/RoadGIS-Plugin-Framework.git
 cd RoadGIS-Plugin-Framework
 ```
 
@@ -107,11 +107,11 @@ Example:
 ruby tools/configure_framework.rb --enable go,rust
 ```
 
-### 3) Implement your plugin logic
+### 3) Implement plugin logic
 
 Read payload from `stdin`, emit JSON to `stdout`.
 
-### 4) Install into your local RoadGIS workspace
+### 4) Install into a local RoadGIS workspace
 
 ```bash
 ruby tools/install_plugin.rb ^
@@ -137,7 +137,7 @@ In RoadGIS:
 
 - `Plugins > Plugin Manager`
 - `Reload Plugin Registry`
-- enable your plugin
+- enable the plugin
 - run manually or via export hook
 
 ## Tutorial: from zero to plugin
@@ -191,7 +191,7 @@ python tools/pack_plugins.py --out ./plugin-pack.zip
 
 ## Plugin library (GitHub Pages)
 
-You can host a plugin catalog directly from this repo using GitHub Pages.
+A plugin catalog can be hosted directly from this repo using GitHub Pages.
 
 What ships in `docs/`:
 
@@ -212,7 +212,7 @@ Enable Pages:
 3. Source: Deploy from branch
 4. Folder: `/docs`
 
-Your library URL will look like:
+The library URL will look like:
 
 ```
 https://<user>.github.io/RoadGIS-Plugin-Framework/plugins.json
@@ -221,27 +221,27 @@ https://<user>.github.io/RoadGIS-Plugin-Framework/plugins.json
 In RoadGISPro, open:
 
 - `Plugins > Plugin Library`
-- Paste the URL above
+- Paste the URL above in RoadGISPro
 - Install + Enable
 
 ## Community registry (central directory)
 
-Want your own plugin repo listed in the official catalog?
+Want a plugin repo listed in the official catalog?
 
-1. Host your own `plugins.json` on GitHub Pages in your repo.
-2. Open a PR here adding your URL to `docs/registry.json`.
+1. Host a `plugins.json` on GitHub Pages in a separate repo.
+2. Open a PR adding the URL to `docs/registry.json`.
 
 Example entry:
 
 ```json
 {
-  "name": "Your Plugin Studio",
-  "url": "https://<you>.github.io/YourPluginRepo/plugins.json",
+  "name": "Community Plugin Studio",
+  "url": "https://<owner>.github.io/PluginRepo/plugins.json",
   "trusted": false
 }
 ```
 
-We’ll review the PR, verify the URL loads, and merge it. Once merged, the website and RoadGISPro library will include your plugins automatically.
+We will review the PR, verify the URL loads, and merge it. Once merged, the website and RoadGISPro library will include the plugins automatically.
 
 ## Quick install + enable + run
 

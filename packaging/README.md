@@ -8,7 +8,7 @@ Targets:
 - Debian Linux: coming soon
 - macOS Sonoma / Sequoia / Tahoe: coming soon
 
-These scripts focus on repeatable build pipelines and can be customized for your CI/CD.
+These scripts focus on repeatable build pipelines and can be customized for a CI/CD system.
 
 ## Windows 11
 
@@ -34,5 +34,5 @@ Coming soon.
 
 ## Notes
 
-- Scripts create a `dist/` tree in your project root.
+- Scripts create a `dist/` tree in the project root.
 - Update app identifiers/signing certificates before production release.

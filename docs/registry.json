@@ -8,5 +8,5 @@
       "trusted": true
     }
   ],
-  "submission_note": "Add your plugins.json URL here via PR to join the library."
+  "submission_note": "Add a plugins.json URL here via PR to join the library."
 }
