@@ -2,7 +2,15 @@
   "id": "rust_hello_world",
   "name": "Rust Hello World",
   "language": "rust",
-  "description": "Basic starter plugin in Rust.",
+  "description": "Example Rust plugin that inspects input geometry and emits a short diagnostic report.",
+  "version": "1.0.0",
+  "tags": [
+    "example",
+    "rust",
+    "starter"
+  ],
+  "homepage": "https://github.com/SuperAaranya/RoadGIS-Plugin-Framework",
+  "min_app_version": "1.0.0",
   "command": [
     "cargo",
     "run",

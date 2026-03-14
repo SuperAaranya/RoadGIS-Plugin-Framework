@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RoadGIS Plugin Library</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <header class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">RoadGIS Plugin Library</p>
+        <h1>Ship plugins that feel native.</h1>
+        <p class="lead">
+          A curated catalog of RoadGIS-compatible plugins with downloadable packs,
+          version hints, and quick install guidance for teams shipping smarter GIS workflows.
+        </p>
+        <div class="hero-actions">
+          <a class="cta" href="#library">Browse Plugins</a>
+          <a class="ghost" href="#publish">Publish Your Plugin</a>
+        </div>
+      </div>
+      <div class="hero-panel">
+        <div class="panel-header">Quick Install</div>
+        <div class="panel-body">
+          <div class="step">
+            <span>1</span> Open RoadGISPro
+          </div>
+          <div class="step">
+            <span>2</span> Plugins &gt; Plugin Library
+          </div>
+          <div class="step">
+            <span>3</span> Install + Enable
+          </div>
+          <div class="code">
+            Library URL:<br />
+            <code>.../plugins.json</code>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="library" class="library">
+        <div class="library-header">
+          <div>
+            <h2>Available Plugin Packs</h2>
+            <p>Installable packs hosted directly from GitHub Pages.</p>
+          </div>
+          <div class="library-tools">
+            <input id="search" type="text" placeholder="Search plugins, tags, languages" />
+            <div id="meta" class="meta"></div>
+          </div>
+        </div>
+        <div id="plugin-grid" class="grid"></div>
+      </section>
+
+      <section id="publish" class="publish">
+        <div class="publish-card">
+          <h3>Publish your plugin in minutes</h3>
+          <p>
+            Add your plugin under <code>plugins/</code>, drop a manifest into
+            <code>manifests/</code>, then run the library build script to generate
+            a new <code>plugins.json</code> and pack zip.
+          </p>
+          <div class="publish-steps">
+            <div class="publish-step">1. Add plugin + manifest</div>
+            <div class="publish-step">2. Run <code>python tools/build_plugin_library.py</code></div>
+            <div class="publish-step">3. Push to GitHub Pages</div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-left">
+        RoadGIS Plugin Framework
+      </div>
+      <div class="footer-right">
+        Host this page with GitHub Pages (docs/ folder)
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

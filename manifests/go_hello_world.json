@@ -2,7 +2,15 @@
   "id": "go_hello_world",
   "name": "Go Hello World",
   "language": "go",
-  "description": "Basic starter plugin in Go.",
+  "description": "Example Go plugin that validates payload shape and reports a clean success summary.",
+  "version": "1.0.0",
+  "tags": [
+    "example",
+    "go",
+    "starter"
+  ],
+  "homepage": "https://github.com/SuperAaranya/RoadGIS-Plugin-Framework",
+  "min_app_version": "1.0.0",
   "command": [
     "go",
     "run",

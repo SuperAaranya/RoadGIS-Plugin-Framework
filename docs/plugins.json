@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "library": "RoadGIS Plugin Library",
+  "generated_at": "2026-03-14T00:54:11Z",
+  "source": "RoadGIS-Plugin-Framework",
+  "plugins": [
+    {
+      "id": "go_hello_world",
+      "name": "Go Hello World",
+      "description": "Example Go plugin that validates payload shape and reports a clean success summary.",
+      "language": "go",
+      "version": "1.0.0",
+      "tags": [
+        "example",
+        "go",
+        "starter"
+      ],
+      "pack_url": "packs/go_hello_world.zip",
+      "homepage": "https://github.com/SuperAaranya/RoadGIS-Plugin-Framework",
+      "min_app_version": "1.0.0",
+      "max_app_version": "",
+      "sha256": "6d0697c9ea636a9b682759552b58928a1c00715bd449eafffbfa81683002a6fe",
+      "size_bytes": 933
+    },
+    {
+      "id": "rust_hello_world",
+      "name": "Rust Hello World",
+      "description": "Example Rust plugin that inspects input geometry and emits a short diagnostic report.",
+      "language": "rust",
+      "version": "1.0.0",
+      "tags": [
+        "example",
+        "rust",
+        "starter"
+      ],
+      "pack_url": "packs/rust_hello_world.zip",
+      "homepage": "https://github.com/SuperAaranya/RoadGIS-Plugin-Framework",
+      "min_app_version": "1.0.0",
+      "max_app_version": "",
+      "sha256": "b67ca032580a255836b632c4a57c50c25f7e3d90cc95320f2f5d0fdc4222fad5",
+      "size_bytes": 1381
+    }
+  ]
+}

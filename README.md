@@ -189,6 +189,41 @@ Create a single zip containing multiple plugins + manifests:
 python tools/pack_plugins.py --out ./plugin-pack.zip
 ```
 
+## Plugin library (GitHub Pages)
+
+You can host a plugin catalog directly from this repo using GitHub Pages.
+
+What ships in `docs/`:
+
+- `index.html` and assets
+- `plugins.json` catalog
+- `packs/` downloadable plugin zips
+
+Build the catalog and packs:
+
+```bash
+python tools/build_plugin_library.py
+```
+
+Enable Pages:
+
+1. GitHub repo Settings
+2. Pages
+3. Source: Deploy from branch
+4. Folder: `/docs`
+
+Your library URL will look like:
+
+```
+https://<user>.github.io/RoadGIS-Plugin-Framework/plugins.json
+```
+
+In RoadGISPro, open:
+
+- `Plugins > Plugin Library`
+- Paste the URL above
+- Install + Enable
+
 ## Quick install + enable + run
 
 ```bash
