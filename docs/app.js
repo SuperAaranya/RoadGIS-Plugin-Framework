@@ -4,6 +4,20 @@ const meta = document.getElementById("meta");
 
 let plugins = [];
 
+function normalizePayload(data, sourceLabel, sourceUrl) {
+  let list = [];
+  if (Array.isArray(data)) {
+    list = data;
+  } else if (data && Array.isArray(data.plugins)) {
+    list = data.plugins;
+  }
+  return list.map((plugin) => ({
+    ...plugin,
+    source: sourceLabel || "Official",
+    source_url: sourceUrl || "",
+  }));
+}
+
 function createCard(plugin) {
   const card = document.createElement("div");
   card.className = "card";
@@ -32,6 +46,12 @@ function createCard(plugin) {
       el.textContent = tag;
       metaRow.appendChild(el);
     });
+  }
+  if (plugin.source) {
+    const el = document.createElement("span");
+    el.className = "tag";
+    el.textContent = plugin.source;
+    metaRow.appendChild(el);
   }
 
   const actions = document.createElement("div");
@@ -79,18 +99,58 @@ function filterPlugins(term) {
 }
 
 async function loadPlugins() {
+  const sources = [];
+  let registry = null;
   try {
-    const res = await fetch("plugins.json", { cache: "no-store" });
-    const data = await res.json();
-    plugins = Array.isArray(data.plugins) ? data.plugins : [];
-    render(plugins);
-    const count = plugins.length;
-    const stamp = data.generated_at ? `Updated ${data.generated_at}` : "Freshly generated";
-    meta.textContent = `${count} plugin packs | ${stamp}`;
+    const regRes = await fetch("registry.json", { cache: "no-store" });
+    if (regRes.ok) {
+      registry = await regRes.json();
+    }
   } catch (err) {
-    meta.textContent = "Failed to load plugins.json.";
-    console.error(err);
+    registry = null;
   }
+
+  if (registry && Array.isArray(registry.sources)) {
+    registry.sources.forEach((src) => {
+      if (src && src.url) {
+        sources.push({
+          name: src.name || "Community",
+          url: new URL(src.url, window.location.href).toString(),
+        });
+      }
+    });
+  }
+
+  if (sources.length === 0) {
+    sources.push({ name: "Official", url: new URL("plugins.json", window.location.href).toString() });
+  }
+
+  const merged = [];
+  const seen = new Set();
+  let errors = 0;
+
+  for (const source of sources) {
+    try {
+      const res = await fetch(source.url, { cache: "no-store" });
+      const data = await res.json();
+      const items = normalizePayload(data, source.name, source.url);
+      items.forEach((plugin) => {
+        const key = plugin.id || `${plugin.name}-${source.name}`;
+        if (seen.has(key)) return;
+        seen.add(key);
+        merged.push(plugin);
+      });
+    } catch (err) {
+      errors += 1;
+      console.warn(`Failed to load ${source.url}`, err);
+    }
+  }
+
+  plugins = merged;
+  render(plugins);
+  const count = plugins.length;
+  const stamp = registry && registry.generated_at ? `Updated ${registry.generated_at}` : "Freshly generated";
+  meta.textContent = `${count} plugin packs | ${sources.length} sources | ${stamp}${errors ? ` | ${errors} errors` : ""}`;
 }
 
 search.addEventListener("input", (event) => {

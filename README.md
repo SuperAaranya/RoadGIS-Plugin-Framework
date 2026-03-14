@@ -224,6 +224,25 @@ In RoadGISPro, open:
 - Paste the URL above
 - Install + Enable
 
+## Community registry (central directory)
+
+Want your own plugin repo listed in the official catalog?
+
+1. Host your own `plugins.json` on GitHub Pages in your repo.
+2. Open a PR here adding your URL to `docs/registry.json`.
+
+Example entry:
+
+```json
+{
+  "name": "Your Plugin Studio",
+  "url": "https://<you>.github.io/YourPluginRepo/plugins.json",
+  "trusted": false
+}
+```
+
+We’ll review the PR, verify the URL loads, and merge it. Once merged, the website and RoadGISPro library will include your plugins automatically.
+
 ## Quick install + enable + run
 
 ```bash

@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "generated_at": "2026-03-14",
+  "sources": [
+    {
+      "name": "Official Library",
+      "url": "plugins.json",
+      "trusted": true
+    }
+  ],
+  "submission_note": "Add your plugins.json URL here via PR to join the library."
+}
